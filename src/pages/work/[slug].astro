@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import { Image } from 'astro:assets';
+import art from '../../assets/aeen-cat-eye-concept.png';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const work = await getCollection('work');
+  return work.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+<Base title={d.seoTitle} description={d.seoDescription} ogType="article">
+  <header class="pagehead">
+    <p class="eyebrow">{d.eyebrow}</p>
+    <h1 set:html={d.title} />
+    <p class="lead">{d.lead}</p>
+  </header>
+  {d.metrics && (
+    <div class="metricgrid">
+      {d.metrics.map((m) => <div class="metric"><strong>{m.value}</strong><span>{m.label}</span></div>)}
+    </div>
+  )}
+  <div class="essay">
+    <aside class="sidebar">
+      {d.sidebar.map((s) => <div><strong>{s.label}</strong><Fragment set:html={s.value} /></div>)}
+    </aside>
+    <article class="prose">
+      <Content />
+      {entry.id === 'aeen' && (
+        <figure>
+          <Image src={art} alt="AEEN Cat Eye mascot concept" widths={[600, 900, 1254]} sizes="(max-width: 760px) 100vw, 770px" />
+          <figcaption>AI-assisted Aeenie collection-art concept. Design exploration, not a claim of a published storefront placement.</figcaption>
+        </figure>
+      )}
+    </article>
+  </div>
+  <CTA />
+</Base>

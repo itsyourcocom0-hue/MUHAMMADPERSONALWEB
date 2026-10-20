@@ -1,63 +1,39 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+import { site } from '../config/site';
 ---
-
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
+<Base
+  title="About Muhammad Farooqui — E-Commerce Operator, Karachi"
+  description="Muhammad Farooqui is an e-commerce operator and D2C brand builder from Karachi who runs the whole business: storefront, ads, courier operations and margins."
+  ogType="profile"
 >
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
-
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
-
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
-
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
-
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+  <header class="pagehead">
+    <p class="eyebrow">About / Muhammad Farooqui</p>
+    <h1>Close to the work.<br /><em>Accountable to the whole.</em></h1>
+    <p class="lead">I build e-commerce brands and work across the systems that keep them running. My base is Karachi. My focus is the full business.</p>
+  </header>
+  <div class="essay">
+    <aside class="sidebar">
+      <div><strong>Based in</strong>Karachi, Pakistan</div>
+      <div><strong>Owned projects</strong>AEEN · MOG</div>
+      <div><strong>Focus</strong>Shopify · Growth · Operations</div>
+      <div><strong>Company</strong><a href={site.company.url}>{site.company.name}</a></div>
+    </aside>
+    <article class="prose">
+      <h2>The storefront is only the start.</h2>
+      <p>A customer sees a product, an ad and a checkout. Behind that simple journey are decisions about the catalogue, creative, fulfilment, courier payments and margins. I work across those decisions.</p>
+      <p>AEEN (<a href={site.aeen.url} target="_blank" rel="noopener">{site.aeen.domain}</a>) is my eyewear brand. MOG, Mart of Gadget, is my gadget store. They are the context for my work with Shopify, custom product experiences and day-to-day e-commerce operations. Across platforms, I have managed more than PKR 14 crore in ad spend.</p>
+      <h2>How I approach the work</h2>
+      <ol>
+        <li><strong>Understand the whole order.</strong> Trace the path from acquisition to cash received before changing one part in isolation.</li>
+        <li><strong>Find the actual constraint.</strong> Separate a weak offer from a slow page, a delivery issue or a cost problem.</li>
+        <li><strong>Build something inspectable.</strong> A working page, an order workflow or a clear reconciliation sheet beats a vague recommendation.</li>
+        <li><strong>Keep the feedback loop open.</strong> Review what happened, document limitations and decide what to improve next.</li>
+      </ol>
+      <h2>Practical systems, human judgement.</h2>
+      <p>I use custom Shopify code and AI-assisted workflows where they make the work better. Tools support the business; they do not replace an understanding of the product, the customer or the numbers. I am the person you deal with, with a team behind me for execution.</p>
+    </article>
+  </div>
+  <CTA />
+</Base>

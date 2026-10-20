@@ -2,19 +2,33 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
-	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
-	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			// Transform string to Date object
-			pubDate: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
-			heroImage: z.optional(image()),
-		}),
+const work = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
+  schema: z.object({
+    order: z.number(),
+    eyebrow: z.string(),
+    title: z.string(),         // H1 — may contain <br> and <em>
+    lead: z.string(),
+    cardTitle: z.string(),
+    cardText: z.string(),
+    seoTitle: z.string(),
+    seoDescription: z.string(),
+    sidebar: z.array(z.object({ label: z.string(), value: z.string() })),
+    metrics: z.array(z.object({ value: z.string(), label: z.string() })).optional(),
+    featured: z.boolean().default(false),
+  }),
 });
 
-export const collections = { blog };
+const notes = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/notes' }),
+  schema: z.object({
+    order: z.number(),
+    pillar: z.string(),
+    title: z.string(),
+    lead: z.string(),
+    seoTitle: z.string(),
+    seoDescription: z.string(),
+  }),
+});
+
+export const collections = { work, notes };

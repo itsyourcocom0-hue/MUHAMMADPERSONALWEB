@@ -1,0 +1,116 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+const fields = [
+  ['orders', 'Dispatched orders', 100, 1, '1'],
+  ['price', 'Selling price / delivered order (Rs)', 3500, 0, '0.01'],
+  ['cost', 'Product cost / delivered order (Rs)', 1200, 0, '0.01'],
+  ['delivery', 'Delivery rate (%)', 80, 0, '0.1'],
+  ['shipping', 'Outbound shipping / dispatch (Rs)', 200, 0, '0.01'],
+  ['returnfee', 'Extra return fee / returned order (Rs)', 150, 0, '0.01'],
+  ['pack', 'Packaging / dispatch (Rs)', 60, 0, '0.01'],
+  ['ads', 'Total advertising spend (Rs)', 40000, 0, '0.01'],
+] as const;
+const checks = [
+  ['Product clarity', 'Title, price, selected variant and primary image agree.'],
+  ['Product confidence', 'Dimensions, compatibility or fit details answer the buying questions.'],
+  ['Delivery information', 'Expected delivery and charges are available before checkout.'],
+  ['Returns information', 'The policy is easy to find and consistent with the product page.'],
+  ['Mobile controls', 'Variant selection and add-to-cart work without clipping.'],
+  ['Cart accuracy', 'Quantity, price, discount and selected variant remain correct.'],
+  ['Checkout path', 'A full test journey has been reviewed on mobile and desktop.'],
+  ['Order follow-through', 'Confirmation, fulfilment and courier tracking have clear ownership.'],
+  ['Reconciliation', 'Store order IDs connect to courier and remittance records.'],
+  ['Measurement', 'Each planned change has a reason and a way to assess its effect.'],
+];
+---
+<Base
+  title="Free COD Profit Calculator & Store Audit Checklist | Muhammad Farooqui"
+  description="Free tools for Pakistani e-commerce: a COD contribution calculator with delivery rate, returns and ad spend, plus a 10-point store audit checklist."
+>
+  <header class="pagehead">
+    <p class="eyebrow">Tools / Free and practical</p>
+    <h1>A clearer view<br /><em>of your next decision.</em></h1>
+    <p class="lead">Work through an order-contribution scenario or review a store with a practical checklist.</p>
+  </header>
+
+  <section class="section" id="calculator-section">
+    <h2>COD contribution calculator.</h2>
+    <p>Illustrative defaults, not results from my stores. All money inputs use Pakistani rupees.</p>
+    <div class="tool">
+      <form id="calculator" novalidate>
+        <div class="inputs">
+          {fields.map(([id, label, value, min, step]) => (
+            <label for={id}>{label}<input id={id} type="number" min={min} max={id === 'delivery' ? 100 : 100000000} step={step} value={value} required /></label>
+          ))}
+        </div>
+        <p id="calcError" class="error" role="status"></p>
+      </form>
+      <div class="results" aria-live="polite">
+        <span class="eyebrow">Estimated contribution</span>
+        <output id="profit"></output>
+        <p>After the variable costs entered; before overhead, taxes, payment fees and other costs.</p>
+        <dl>
+          <div><dt>Delivered revenue</dt><dd id="revenue" data-result></dd></div>
+          <div><dt>Delivered orders</dt><dd id="delivered" data-result></dd></div>
+          <div><dt>Returned orders</dt><dd id="returned" data-result></dd></div>
+          <div><dt>Shipping + returns + packaging</dt><dd id="logistics" data-result></dd></div>
+          <div><dt>Contribution before ad spend</dt><dd id="breakEven" data-result></dd></div>
+          <div><dt>Contribution / dispatch</dt><dd id="perOrder" data-result></dd></div>
+        </dl>
+      </div>
+    </div>
+    <details class="callout">
+      <summary>Calculation and assumptions</summary>
+      <p style="margin-top:15px">Delivered orders = dispatches × delivery rate. Revenue = delivered orders × selling price. Contribution = revenue − delivered product costs − outbound shipping on all dispatches − packaging on all dispatches − extra fees on returns − advertising spend.</p>
+      <p style="margin-top:15px">Returned goods are assumed recoverable at no additional product loss. Every undelivered order is treated as returned, with no pending cohort. A negative “contribution before ad spend” means the scenario already loses money before acquisition.</p>
+    </details>
+  </section>
+
+  <section class="section" id="checklist">
+    <h2>The store review checklist.</h2>
+    <p>Use this to guide a first pass. Your selections remain on this page until you leave or reload it.</p>
+    <p id="checkProgress" class="progress" aria-live="polite"></p>
+    <div class="checklist">
+      {checks.map(([t, d]) => <label><input type="checkbox" /><span><strong>{t}</strong>{d}</span></label>)}
+    </div>
+    <button id="print" class="button" type="button" style="margin-top:25px">Print / save as PDF</button>
+  </section>
+  <CTA />
+</Base>
+
+<script>
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const keys = ['orders', 'price', 'cost', 'delivery', 'shipping', 'returnfee', 'pack', 'ads'];
+  const money = (n: number) => 'Rs ' + Math.round(n).toLocaleString('en-PK');
+  function calculate() {
+    const inputs = keys.map((k) => $<HTMLInputElement>('#' + k));
+    if (!inputs.every((i) => i.value !== '' && i.checkValidity())) {
+      $('#calcError').textContent = 'Enter valid non-negative values. Orders must be at least 1; delivery rate is 0–100%.';
+      $('#profit').textContent = '—';
+      document.querySelectorAll('[data-result]').forEach((x) => (x.textContent = '—'));
+      return;
+    }
+    $('#calcError').textContent = '';
+    const v = Object.fromEntries(inputs.map((i) => [i.id, +i.value])) as Record<string, number>;
+    const d = (v.orders * v.delivery) / 100, returned = v.orders - d;
+    const revenue = d * v.price, cogs = d * v.cost;
+    const logistics = v.orders * (v.shipping + v.pack) + returned * v.returnfee;
+    const profit = revenue - cogs - logistics - v.ads;
+    $('#profit').textContent = money(profit);
+    $('#revenue').textContent = money(revenue);
+    $('#delivered').textContent = d.toFixed(1);
+    $('#returned').textContent = returned.toFixed(1);
+    $('#logistics').textContent = money(logistics);
+    $('#breakEven').textContent = money(revenue - cogs - logistics);
+    $('#perOrder').textContent = money(profit / v.orders);
+  }
+  $('#calculator').addEventListener('input', calculate);
+  calculate();
+
+  const checks = [...document.querySelectorAll<HTMLInputElement>('.checklist input')];
+  const update = () => ($('#checkProgress').textContent = `${checks.filter((c) => c.checked).length} / ${checks.length} checked`);
+  checks.forEach((c) => c.addEventListener('change', update));
+  $('#print').addEventListener('click', () => window.print());
+  update();
+</script>

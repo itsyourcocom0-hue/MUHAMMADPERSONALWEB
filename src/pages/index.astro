@@ -1,49 +1,89 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
----
+import Base from '../layouts/Base.astro';
+import AeenFeature from '../components/AeenFeature.astro';
+import Card from '../components/Card.astro';
+import CTA from '../components/CTA.astro';
+import { getCollection } from 'astro:content';
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order).filter((w) => !w.data.featured);
+const notes = (await getCollection('notes')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base
+  title="Muhammad Farooqui | E-Commerce Manager & Operator, Karachi"
+  description="Muhammad Farooqui builds and operates D2C e-commerce brands end to end: Shopify storefronts, performance marketing, COD logistics and P&L. Based in Karachi, working with clients worldwide."
+  ogType="profile"
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">E-commerce operator / D2C brand builder</p>
+      <h1>I build brands.<br />I run <em>the business.</em></h1>
+      <p class="lead">From the first product page to the last courier payment. I build and operate e-commerce businesses, end to end.</p>
+      <div class="actions">
+        <a class="button" href="/work">Explore my work ↗</a>
+        <a class="textlink" href="/about">Inside the operation</a>
+      </div>
+      <p class="meta">Based in <b>Karachi, Pakistan</b> / Built on actual work</p>
+    </div>
+    <aside class="operation" aria-label="The operator’s view">
+      <div class="meta"><span>The operator’s view</span><span>01 — 04</span></div>
+      <p class="eyebrow" style="margin:40px 0 0">Connect the whole operation.</p>
+      <h2 style="margin-top:12px">One business.<br /><em>Every moving part.</em></h2>
+      <div class="row"><b>01</b><span>Storefront</span><span>Shopify / CRO</span></div>
+      <div class="row"><b>02</b><span>Growth</span><span>Ads / creative</span></div>
+      <div class="row"><b>03</b><span>Operations</span><span>COD / courier</span></div>
+      <div class="row"><b>04</b><span>Economics</span><span>Margin / P&amp;L</span></div>
+      <p class="small dash" style="margin-bottom:0">From the storefront to the bottom line.</p>
+    </aside>
+  </section>
+
+  <div class="strip" aria-label="Proof">
+    <span><strong class="hl">PKR 14 Cr+</strong>Ad spend managed across platforms</span>
+    <span><strong>2 owned stores</strong>AEEN eyewear · MOG gadgets</span>
+    <span><strong>Custom Shopify code</strong>Liquid, CSS, metafields — no page builders</span>
+    <span><strong>COD, end to end</strong>Courier, returns and remittance reconciliation</span>
+  </div>
+
+  <section class="section">
+    <div class="sectiontop">
+      <div><p class="eyebrow">Selected work</p><h2>Built. Tested. Operated.</h2></div>
+      <a class="textlink" href="/work">All projects ↗</a>
+    </div>
+    <AeenFeature />
+    <div class="grid two" style="margin-top:20px">
+      {work.map((w) => <Card href={`/work/${w.id}`} eyebrow={w.data.eyebrow} title={w.data.cardTitle} text={w.data.cardText} />)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sectiontop">
+      <h2>Where I get involved.</h2>
+      <a class="textlink" href="/services">Explore services ↗</a>
+    </div>
+    <div class="grid">
+      <Card href="/services#store" eyebrow="01 / Store" title="Shopify & conversion" text="Custom storefronts, product-page clarity and fewer obstacles between interest and checkout." />
+      <Card href="/services#retainer" eyebrow="02 / Growth" title="Creative & acquisition" text="Connect what an ad promises with what the customer actually sees and buys." />
+      <Card href="/services#operations" eyebrow="03 / Operations" title="The order after checkout" text="COD workflows, courier reconciliation and contribution margin belong in the same conversation." />
+    </div>
+  </section>
+
+  <section class="aboutband">
+    <div><p class="eyebrow">Muhammad Farooqui</p><h2>I like the parts<br />between the parts.</h2></div>
+    <div>
+      <p>A better ad needs a better product page. A growing store needs a reliable delivery process. A sales dashboard needs a margin check.</p>
+      <p>My work connects those decisions.</p>
+      <a class="textlink" href="/about">More about my approach ↗</a>
+    </div>
+  </section>
+
+  <section class="section" style="margin-top:75px">
+    <div class="sectiontop">
+      <h2>From the operator’s notebook.</h2>
+      <a class="textlink" href="/notes">All notes ↗</a>
+    </div>
+    <div class="grid">
+      {notes.map((n) => <Card href={`/notes/${n.id}`} eyebrow={n.data.pillar} title={n.data.title} text={n.data.lead} />)}
+    </div>
+  </section>
+
+  <CTA />
+</Base>

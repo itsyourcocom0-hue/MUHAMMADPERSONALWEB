@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
+const extra = [
+  site.calendlyUrl && { href: site.calendlyUrl, label: 'Book a call on Calendly ↗' },
+  site.whatsappUrl && { href: site.whatsappUrl, label: 'Message on WhatsApp ↗' },
+  site.socials.linkedin && { href: site.socials.linkedin, label: 'Connect on LinkedIn ↗' },
+].filter(Boolean) as { href: string; label: string }[];
+---
+<Base
+  title="Contact Muhammad Farooqui — Start a Project"
+  description="Working on a D2C or Shopify store? Tell Muhammad Farooqui about the store, the constraint and the outcome you want. Email muhammad@farooqui-inc.com."
+>
+  <header class="pagehead">
+    <p class="eyebrow">Contact / Start with the context</p>
+    <h1>What needs<br /><em>to work better?</em></h1>
+    <p class="lead">Tell me about your store, the constraint and the outcome you want. A useful conversation starts with the actual problem.</p>
+  </header>
+  <div class="contactgrid">
+    <div>
+      <p class="eyebrow">Email directly</p>
+      <a class="email textlink" href={`mailto:${site.email}`}>{site.email}</a>
+      {extra.length > 0 && (
+        <div class="contactlinks">
+          {extra.map((l) => <a class="textlink" style="justify-self:start" href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
+        </div>
+      )}
+      <p style="margin-top:30px">Based in Karachi, Pakistan.<br />Project scope, timing and availability are discussed by email.</p>
+      <div class="callout"><p>Useful context: your store URL, platform, current challenge and timing. Keep passwords and customer records out of the first message.</p></div>
+    </div>
+    <form id="inquiry" data-email={site.email}>
+      <label for="name">Your name<input type="text" id="name" autocomplete="name" required maxlength="100" /></label>
+      <label for="email">Your email<input type="email" id="email" autocomplete="email" required maxlength="150" /></label>
+      <label for="service">What would you like to discuss?
+        <select id="service">
+          <option>Shopify build or rebuild</option>
+          <option>CRO and store audit</option>
+          <option>Operations setup</option>
+          <option>Operator retainer</option>
+          <option>Another collaboration</option>
+        </select>
+      </label>
+      <label for="message">Store URL and project context<textarea id="message" required maxlength="1800" placeholder="What is happening now, and what would a useful outcome look like?"></textarea></label>
+      <button class="button" type="submit" style="justify-self:start">Compose email ↗</button>
+      <p class="small">Opens your email app with a draft. This website does not send or store your inquiry.</p>
+      <p id="mailStatus" role="status" class="small"></p>
+      <a id="mailFallback" class="textlink" hidden style="justify-self:start">Open the email draft again ↗</a>
+    </form>
+  </div>
+</Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#inquiry')!;
+  const val = (id: string) => (document.getElementById(id) as HTMLInputElement).value.trim();
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const name = val('name'), email = val('email'), service = val('service'), message = val('message');
+    const body = `Hi Muhammad,\n\nMy name is ${name}.\nEmail: ${email}\nInterested in: ${service}\n\n${message}\n`;
+    const href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(`${service} inquiry — ${name}`)}&body=${encodeURIComponent(body)}`;
+    const fb = document.getElementById('mailFallback') as HTMLAnchorElement;
+    fb.href = href; fb.hidden = false;
+    document.getElementById('mailStatus')!.textContent = 'Your email draft is ready. Send it from your email app. Nothing has been submitted by this website.';
+    window.location.href = href;
+  });
+</script>

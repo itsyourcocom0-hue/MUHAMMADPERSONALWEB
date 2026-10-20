@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+<Base title={d.seoTitle} description={d.seoDescription} ogType="article">
+  <header class="pagehead">
+    <p class="eyebrow">Operator notes / {d.pillar}</p>
+    <h1>{d.title}</h1>
+    <p class="lead">{d.lead}</p>
+  </header>
+  <div class="essay">
+    <aside class="sidebar">
+      <div><strong>Written for</strong>E-commerce operators</div>
+      <div><strong>Format</strong>Practical framework</div>
+      <div><strong>By</strong>Muhammad Farooqui</div>
+    </aside>
+    <article class="prose"><Content /></article>
+  </div>
+  <CTA />
+</Base>

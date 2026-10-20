@@ -1,0 +1,14 @@
+---
+import { site } from '../config/site';
+---
+<section class="cta">
+  <div>
+    <p class="eyebrow">Let’s connect the dots</p>
+    <h2>Have a store to build.<br />Or a business to improve?</h2>
+    <p>Start with the problem. We can work out the right scope.</p>
+  </div>
+  <div class="actions">
+    <a class="button" href="/contact">Get in touch ↗</a>
+    {site.calendlyUrl && <a class="button ghost" href={site.calendlyUrl} target="_blank" rel="noopener">Book a call ↗</a>}
+  </div>
+</section>

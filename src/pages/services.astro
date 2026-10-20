@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+import CTA from '../components/CTA.astro';
+
+const services = [
+  { id: 'store', title: 'Shopify build & rebuild', intro: 'For a store that needs a clearer, more useful buying experience.',
+    items: ['Product and collection structure', 'Theme customisation and product-page implementation', 'Mobile journey and launch checks'],
+    outcome: 'A working storefront and a clear handover.' },
+  { id: 'audit', title: 'CRO & store audit', intro: 'For a store with traffic, unanswered questions and friction in the buying journey.',
+    items: ['Product-page and mobile checkout review', 'Prioritised findings with screenshots and reasoning', 'A practical implementation and measurement plan'],
+    outcome: 'An actionable audit, organised by impact and effort.' },
+  { id: 'operations', title: 'Operations setup', intro: 'For a business that needs visibility after checkout.',
+    items: ['Order-status and fulfilment workflow', 'Courier/COD reconciliation structure', 'Return reasons and unit-economics reporting'],
+    outcome: 'A repeatable operating process with ownership made clear.' },
+  { id: 'retainer', title: 'Operator retainer', intro: 'For a brand that needs connected execution across the business.',
+    items: ['Store, creative and acquisition coordination', 'Recurring operations and numbers review', 'Prioritised execution with documented follow-through'],
+    outcome: 'A defined scope, review rhythm and accountable point of contact.' },
+];
+const faq = [
+  ['Can we start with a small project?', 'Yes. A focused audit or a defined storefront change can be the starting point. The right scope depends on the problem.'],
+  ['Do you guarantee revenue or ROAS?', 'No. Commercial results depend on the offer, market, traffic quality, costs and execution. The work should have clear deliverables and an agreed way to evaluate results.'],
+  ['What should I send in an inquiry?', 'Your store URL, the problem you want to solve, your current platform and any timing constraints. Never send passwords or customer data in the first message.'],
+  ['How are pricing and availability handled?', 'Both are discussed after the scope is understood. This site does not show fixed packages or promise immediate availability.'],
+];
+---
+<Base
+  title="E-Commerce Services — Shopify, CRO, COD Operations | Muhammad Farooqui"
+  description="Shopify store builds, CRO and store audits, COD/courier operations setup and a full operator retainer for D2C brands — scoped around the actual constraint."
+>
+  <header class="pagehead">
+    <p class="eyebrow">Services / Ways to work together</p>
+    <h1>Fix the constraint.<br /><em>Connect the business.</em></h1>
+    <p class="lead">Start with the part that needs attention. Keep the surrounding systems in view.</p>
+  </header>
+
+  {services.map((s, i) => (
+    <section class="service" id={s.id}>
+      <span class="number">{String(i + 1).padStart(2, '0')}</span>
+      <div>
+        <h2>{s.title}</h2>
+        <p>{s.intro}</p>
+        <a class="textlink" href="/contact">Discuss this scope ↗</a>
+      </div>
+      <div>
+        <ul>{s.items.map((it) => <li>{it}</li>)}</ul>
+        <p><strong>What you leave with</strong><br />{s.outcome}</p>
+      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <h2>A simple working process.</h2>
+    <div class="grid">
+      <Card href="/contact" eyebrow="01 / Understand" title="Start with the context." text="Share your store, the current constraint and what a useful outcome looks like." />
+      <Card href="/contact" eyebrow="02 / Define" title="Agree on the scope." text="Set deliverables, dependencies and a realistic review process before work begins." />
+      <Card href="/contact" eyebrow="03 / Execute" title="Build and review." text="Work through the priorities and leave clear documentation for what happens next." />
+    </div>
+  </section>
+
+  <section class="section faq">
+    <h2>Before we begin.</h2>
+    {faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+  </section>
+  <CTA />
+</Base>
