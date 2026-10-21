@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Orbit from '../../components/Orbit.astro';
 import CTA from '../../components/CTA.astro';
 import { getCollection, render } from 'astro:content';
 
@@ -13,6 +14,7 @@ const d = entry.data;
 ---
 <Base title={d.seoTitle} description={d.seoDescription} ogType="article">
   <header class="pagehead">
+    <Orbit hot={3} />
     <p class="eyebrow">Notes / {d.pillar}</p>
     <h1>{d.title}</h1>
     <p class="lead">{d.lead}</p>

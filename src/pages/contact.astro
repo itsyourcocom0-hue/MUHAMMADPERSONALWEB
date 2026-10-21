@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Orbit from '../components/Orbit.astro';
 import { site } from '../config/site';
 const extra = [
   site.calendlyUrl && { href: site.calendlyUrl, label: 'Book a call on Calendly ↗' },
@@ -12,6 +13,7 @@ const extra = [
   description="Working on a D2C or Shopify store? Tell Muhammad Farooqui about the store, the constraint and the outcome you want. Email muhammad@farooqui-inc.com."
 >
   <header class="pagehead">
+    <Orbit hot={0} />
     <p class="eyebrow">Contact / Start with the context</p>
     <h1>What needs<br /><em>to work better?</em></h1>
     <p class="lead">Tell me about your store, the constraint and the outcome you want. A useful conversation starts with the actual problem.</p>
@@ -22,7 +24,7 @@ const extra = [
       <a class="email textlink" href={`mailto:${site.email}`}>{site.email}</a>
       {extra.length > 0 && (
         <div class="contactlinks">
-          {extra.map((l) => <a class="textlink" style="justify-self:start" href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
+          {extra.map((l) => <a href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
         </div>
       )}
       <p style="margin-top:30px">Based in Karachi, Pakistan.<br />Project scope, timing and availability are discussed by email.</p>

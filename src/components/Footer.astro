@@ -5,6 +5,7 @@ const links = [
   { href: '/services', label: 'Services' },
   { href: '/notes', label: 'Notes' },
   { href: '/tools', label: 'Free tools' },
+  { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
   ...(site.socials.linkedin ? [{ href: site.socials.linkedin, label: 'LinkedIn' }] : []),
   ...(site.socials.instagram ? [{ href: site.socials.instagram, label: 'Instagram' }] : []),
@@ -12,7 +13,7 @@ const links = [
 ];
 ---
 <footer class="footer">
-  <span>© {new Date().getFullYear()} {site.name} · {site.city}, {site.country} · <a href={site.company.url}>{site.company.name}</a></span>
+  <span>© {new Date().getFullYear()} {site.name} | E-Commerce · {site.city}, {site.country} · <a href={site.company.url} target="_blank" rel="noopener">{site.company.name}</a></span>
   <nav class="footerlinks" aria-label="Footer">
     {links.map((l) => <a href={l.href} {...(l.href.startsWith('http') ? { rel: 'me noopener', target: '_blank' } : {})}>{l.label}</a>)}
   </nav>

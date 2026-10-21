@@ -6,14 +6,14 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
 <header class="top">
   <a class="brand" href="/" aria-label="Muhammad Farooqui — home">
     <span class="mark" aria-hidden="true">MF</span>
-    <span>Muhammad<br />Farooqui.</span>
+    <span class="name">Muhammad Farooqui</span>
   </a>
   <button class="menu" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
   <nav class="nav" id="site-nav" aria-label="Main">
     {nav.map((item) => (
       <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
     ))}
-    <a class="contact" href="/contact" aria-current={isCurrent('/contact') ? 'page' : undefined}>Get in touch ↗</a>
+    <a class="contact" href="/contact" aria-current={isCurrent('/contact') ? 'page' : undefined}>Get in touch</a>
   </nav>
 </header>
 <script>
@@ -26,4 +26,5 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
   };
   menu?.addEventListener('click', () => set(menu.getAttribute('aria-expanded') !== 'true'));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+  navEl?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
 </script>

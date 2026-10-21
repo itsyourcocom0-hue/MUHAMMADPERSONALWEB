@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Orbit from '../../components/Orbit.astro';
 import Card from '../../components/Card.astro';
 import CTA from '../../components/CTA.astro';
 import { getCollection } from 'astro:content';
@@ -10,6 +11,7 @@ const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.
   description="Hands-on e-commerce builds by Muhammad Farooqui: a premium eyewear store rebuilt in custom Shopify code, a browser virtual try-on and a gadget store with an AI support chatbot."
 >
   <header class="pagehead">
+    <Orbit hot={2} />
     <p class="eyebrow">Work / Selected projects</p>
     <h1>The work behind<br /><em>the positioning.</em></h1>
     <p class="lead">Hands-on builds, store names left out. Each project explains the context, the work and the limits of what can be claimed.</p>

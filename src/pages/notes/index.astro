@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Orbit from '../../components/Orbit.astro';
 import Card from '../../components/Card.astro';
 import CTA from '../../components/CTA.astro';
 import { getCollection } from 'astro:content';
@@ -10,6 +11,7 @@ const notes = (await getCollection('notes')).sort((a, b) => a.data.order - b.dat
   description="Practical frameworks from a working e-commerce manager: product-page audits, COD courier reconciliation and the unit economics beneath an order."
 >
   <header class="pagehead">
+    <Orbit hot={3} />
     <p class="eyebrow">Notes / The working notebook</p>
     <h1>Write down the work.<br /><em>Make it useful.</em></h1>
     <p class="lead">Practical frameworks for the storefront, the courier file and the numbers beneath an order.</p>

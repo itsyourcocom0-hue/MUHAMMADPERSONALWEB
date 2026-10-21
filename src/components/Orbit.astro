@@ -1,0 +1,23 @@
+---
+// 3D orbit of the five skill icons — sits inside a page header and turns on scroll.
+interface Props { hot?: number }
+const { hot = 0 } = Astro.props;
+const icons = [
+  '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/>',
+  '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/><path d="M8 10.5h5"/>',
+  '<path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/>',
+  '<path d="M3 4h18l-7 8v6l-4 2v-8z"/>',
+  '<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>',
+];
+---
+<div class="core" aria-hidden="true"></div>
+<div class="orbit" aria-hidden="true">
+  <div class="orbit-in">
+    <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+    {icons.map((d, k) => (
+      <div class={k === hot ? 'orb hot' : 'orb'} style={`--k:${k}`}>
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={d} /></i>
+      </div>
+    ))}
+  </div>
+</div>

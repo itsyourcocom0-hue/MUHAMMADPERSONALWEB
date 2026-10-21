@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Orbit from '../components/Orbit.astro';
 import CTA from '../components/CTA.astro';
 const fields = [
   ['orders', 'Dispatched orders', 100, 1, '1'],
@@ -29,6 +30,7 @@ const checks = [
   description="Free tools for Pakistani e-commerce: a COD contribution calculator with delivery rate, returns and ad spend, plus a 10-point store audit checklist."
 >
   <header class="pagehead">
+    <Orbit hot={4} />
     <p class="eyebrow">Tools / Free and practical</p>
     <h1>A clearer view<br /><em>of your next decision.</em></h1>
     <p class="lead">Work through an order-contribution scenario or review a store with a practical checklist.</p>

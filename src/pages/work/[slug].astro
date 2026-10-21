@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Orbit from '../../components/Orbit.astro';
 import CTA from '../../components/CTA.astro';
 import { getCollection, render } from 'astro:content';
 
@@ -13,13 +14,21 @@ const d = entry.data;
 ---
 <Base title={d.seoTitle} description={d.seoDescription} ogType="article">
   <header class="pagehead">
+    <Orbit hot={2} />
     <p class="eyebrow">{d.eyebrow}</p>
     <h1 set:html={d.title} />
     <p class="lead">{d.lead}</p>
   </header>
   {d.metrics && (
     <div class="metricgrid">
-      {d.metrics.map((m) => <div class="metric"><strong>{m.value}</strong><span>{m.label}</span></div>)}
+      {d.metrics.map((m) => {
+        const mt = m.value.match(/^([\d.,]+)(.*)$/);
+        const num = mt ? mt[1].replace(/,/g, '') : '';
+        const dec = num.includes('.') ? num.split('.')[1].length : 0;
+        return <div class="metric">{mt
+          ? <strong><span data-count={num} data-dec={dec} data-sep={mt[1].includes(',') ? '1' : undefined}>{mt[1]}</span>{mt[2]}</strong>
+          : <strong>{m.value}</strong>}<span>{m.label}</span></div>;
+      })}
     </div>
   )}
   <div class="essay">

@@ -1,119 +1,24 @@
 ---
-// Homepage — standalone 3D page (own styles + script, not Base layout).
-// Links & images live in the CONFIG block at the bottom of this file.
+// Homepage — 3D scroll page on the shared layout (Base.astro).
+// Links & images live in the CONFIG block of the script at the bottom.
+import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 const notes = (await getCollection('notes')).sort((a, b) => a.data.order - b.data.order);
+const faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does an e-commerce manager actually do?", "acceptedAnswer": {"@type": "Answer", "text": "An e-commerce manager owns the whole path from ad to delivered order: the ads that bring traffic, the store and product pages that convert it, the cart and checkout, and the operations behind cash-on-delivery orders. Instead of hiring a separate ad buyer, developer and CRO consultant, you get one person who sees how every layer affects the others."}}, {"@type": "Question", "name": "Will you make changes on my live store?", "acceptedAnswer": {"@type": "Answer", "text": "No. All work is built on a duplicate theme and shared with you through a preview link. Your live store stays untouched until you approve the changes."}}, {"@type": "Question", "name": "Can you work on my existing Shopify theme?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, including older and heavily customised themes. New sections are hand-coded in Liquid with their own scoped CSS, so they fit into what you already have without breaking other pages."}}, {"@type": "Question", "name": "Do you do all the work yourself?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The diagnosis, strategy, design and build are done by me. A small team at Farooqui Inc supports routine execution under my direction, but I am the one you deal with and the one accountable for the result."}}, {"@type": "Question", "name": "Do you work with stores outside Pakistan?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The team covers both Pakistan and US business hours, so international clients get responses during their working day."}}, {"@type": "Question", "name": "Do you only run ads?", "acceptedAnswer": {"@type": "Answer", "text": "No. Ads are one layer. Many stores have ads that perform well but a website that loses the customer, so the work covers the store, product pages and cart as well."}}, {"@type": "Question", "name": "How do we start?", "acceptedAnswer": {"@type": "Answer", "text": "Book a call. The first step is an audit of your ads and store, followed by a written plan you approve before anything is built."}}]};
 ---
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Muhammad Farooqui | E-Commerce Manager &amp; Full-Funnel Expert</title>
-<meta name="description" content="Muhammad Farooqui diagnoses your entire e-commerce funnel — ads, store, cart, COD — and fixes it himself. PKR 14 Cr+ ad spend managed.">
-<link rel="canonical" href="https://muhammadfarooqui.com/">
-<meta name="theme-color" content="#090909">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="sitemap" href="/sitemap-index.xml">
-<meta name="author" content="Muhammad Farooqui">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://muhammadfarooqui.com/">
-<meta property="og:title" content="Muhammad Farooqui | E-Commerce">
-<meta property="og:description" content="An e-commerce expert who reads your whole funnel, finds the broken layer and fixes it — hands-on where it counts.">
-<meta property="og:image" content="https://muhammadfarooqui.com/og.png">
-<meta name="twitter:card" content="summary_large_image">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<script is:inline type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Person",
-  "name":"Muhammad Farooqui",
-  "jobTitle":"E-Commerce Manager",
-  "url":"https://muhammadfarooqui.com/",
-  "description":"E-commerce manager who diagnoses the full funnel — ads, store, cart and COD operations — and personally owns the strategy, design and build: Shopify development, conversion optimisation, Meta and Google Ads.",
-  "worksFor":{"@type":"Organization","name":"Farooqui Inc","url":"https://farooqui-inc.com/"},
-  "knowsAbout":["E-commerce management","Shopify development","Liquid","Conversion rate optimisation","Meta Ads","Google Ads","Cash on delivery logistics","Virtual try-on","Performance marketing"],
-  "email":"mailto:muhammad@farooqui-inc.com",
-  "address":{"@type":"PostalAddress","addressLocality":"Karachi","addressCountry":"PK"},
-  "sameAs":["https://www.linkedin.com/in/muhammad-bin-yousuf-835208287/","https://www.instagram.com/its_cocom0/"]
-}
-</script>
-<script is:inline type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"What does an e-commerce manager actually do?","acceptedAnswer":{"@type":"Answer","text":"An e-commerce manager owns the whole path from ad to delivered order: the ads that bring traffic, the store and product pages that convert it, the cart and checkout, and the operations behind cash-on-delivery orders. Instead of hiring a separate ad buyer, developer and CRO consultant, you get one person who sees how every layer affects the others."}},
-    {"@type":"Question","name":"Will you make changes on my live store?","acceptedAnswer":{"@type":"Answer","text":"No. All work is built on a duplicate theme and shared with you through a preview link. Your live store stays untouched until you approve the changes."}},
-    {"@type":"Question","name":"Can you work on my existing Shopify theme?","acceptedAnswer":{"@type":"Answer","text":"Yes, including older and heavily customised themes. New sections are hand-coded in Liquid with their own scoped CSS, so they fit into what you already have without breaking other pages."}},
-    {"@type":"Question","name":"Do you do all the work yourself?","acceptedAnswer":{"@type":"Answer","text":"Yes. The diagnosis, strategy, design and build are done by me. A small team at Farooqui Inc supports routine execution under my direction, but I am the one you deal with and the one accountable for the result."}},
-    {"@type":"Question","name":"Do you work with stores outside Pakistan?","acceptedAnswer":{"@type":"Answer","text":"Yes. The team covers both Pakistan and US business hours, so international clients get responses during their working day."}},
-    {"@type":"Question","name":"Do you only run ads?","acceptedAnswer":{"@type":"Answer","text":"No. Ads are one layer. Many stores have ads that perform well but a website that loses the customer, so the work covers the store, product pages and cart as well."}},
-    {"@type":"Question","name":"How do we start?","acceptedAnswer":{"@type":"Answer","text":"Book a call. The first step is an audit of your ads and store, followed by a written plan you approve before anything is built."}}
-  ]
-}
-</script>
-
+<Base
+  title={"Muhammad Farooqui | E-Commerce Manager & Full-Funnel Expert"}
+  description={"Muhammad Farooqui diagnoses your entire e-commerce funnel — ads, store, cart, COD — and fixes it himself. PKR 14 Cr+ ad spend managed."}
+  ogType="profile"
+  full
+  schema={[faq]}
+>
+<Fragment slot="head">
 <style is:inline>
-:root{
-  --bg:#090909; --bg2:#06222a; --bg3:#0a2e37;
-  --ink:#e8fbff; --mute:#8db3bb; --dim:#5c858e;
-  --teal:#14b8a6; --cyan:#76fbee; --mint:#5eead4;
-  --line:rgba(140,230,240,.14); --line2:rgba(140,230,240,.26);
-  --glass:rgba(10,44,52,.55);
-  --grad:linear-gradient(120deg,#14b8a6 0%,#76fbee 100%);
-  --r:clamp(14px,1.4vw,22px);
-  --pad:clamp(16px,5vw,72px);
-  --max:1200px;
-  --disp:"Space Grotesk",Inter,system-ui,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:Inter,system-ui,sans-serif;color:var(--ink);line-height:1.6;
-  background:
-    radial-gradient(1200px 700px at 85% -10%,rgba(118,251,238,.18),transparent 60%),
-    radial-gradient(900px 600px at -10% 20%,rgba(20,184,166,.16),transparent 60%),
-    var(--bg);
-  overflow-x:hidden;
-}
-h1,h2,h3,h4{font-family:var(--disp);line-height:1.1;letter-spacing:-.02em}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:clamp(11px,.9vw,13px);letter-spacing:.14em;text-transform:uppercase;color:var(--mint);font-weight:600}
-.eyebrow::before{content:"";width:22px;height:1px;background:var(--grad)}
-.sec{padding:clamp(80px,12vw,160px) 0;position:relative}
-.sec-head{max-width:760px;margin-bottom:clamp(36px,5vw,64px)}
-.sec-head h2{font-size:clamp(30px,4.6vw,58px);margin:14px 0 16px}
-.sec-head p{color:var(--mute);font-size:clamp(15px,1.25vw,18px)}
-
-/* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .25s,box-shadow .25s,background .25s;cursor:pointer;border:0}
-.btn-main{background:var(--grad);color:#032026;box-shadow:0 10px 30px -10px rgba(118,251,238,.6)}
-.btn-ghost{border:1px solid var(--line2);background:rgba(255,255,255,.02)}
-@media (hover:hover) and (min-width:1025px){
-  .btn-main:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(118,251,238,.8)}
-  .btn-ghost:hover{background:rgba(118,251,238,.08)}
-}
-
-/* ---------- progress + nav ---------- */
-.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--grad);z-index:60}
-.nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);width:min(calc(100% - 24px),var(--max));z-index:50;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 10px 10px 20px;border-radius:999px;
-  background:rgba(4,22,27,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line)}
-.logo{font-family:var(--disp);font-weight:700;font-size:18px;display:flex;align-items:center;gap:10px}
-.logo i{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-style:normal;color:#032026;font-size:13px}
-.nav ul{display:flex;gap:28px;list-style:none;font-size:14px;color:var(--mute)}
-.nav ul a:hover{color:var(--ink)}
-.nav .btn{padding:10px 18px;font-size:14px}
-@media (max-width:860px){.nav ul{display:none}}
-@media (max-width:480px){.logo span{display:none}.nav .btn{padding:9px 14px;font-size:13px}}
+.home{--glass:rgba(10,44,52,.55)}
+.home :where(h1,h2,h3,h4,h5,p,ul,ol,li){margin:0;padding:0}
+.home .sec-head h2{font-size:clamp(30px,4.6vw,58px);margin:14px 0 16px}
+.home .sec-head p{font-size:clamp(15px,1.25vw,18px)}
 
 /* ---------- hero ---------- */
 .hero{min-height:100vh;display:grid;align-items:center;padding:120px 0 60px}
@@ -161,7 +66,7 @@ img{display:block;max-width:100%}
 .stat{padding:clamp(22px,3vw,38px) 12px;border-right:1px solid var(--line)}
 .stat:last-child{border-right:0}
 .stat b{display:block;font-family:var(--disp);font-size:clamp(26px,3.4vw,44px)}
-.stat span{color:var(--mute);font-size:clamp(12px,1vw,14px)}
+.stat > span{color:var(--mute);font-size:clamp(12px,1vw,14px)}
 @media (max-width:760px){.proof .wrap{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 
 /* ---------- funnel explode (sticky) ---------- */
@@ -236,10 +141,6 @@ img{display:block;max-width:100%}
   .skills .sec-head{display:none}
 }
 
-.who{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:600;border:1px solid var(--line2)}
-.who::before{content:"";width:8px;height:8px;border-radius:50%}
-.who.me{color:var(--cyan);background:rgba(118,251,238,.08)}.who.me::before{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
-.who.team{color:var(--mute)}.who.team::before{background:var(--teal)}
 
 /* ---------- how work gets done ---------- */
 .flow{display:grid;grid-template-columns:1fr auto 1.4fr auto 1fr;gap:14px;align-items:stretch;perspective:1400px}
@@ -255,52 +156,31 @@ img{display:block;max-width:100%}
 .split p{font-size:13.5px}
 .split a{color:var(--cyan);font-size:13px;font-weight:600;display:inline-block;margin-top:8px}
 @media (max-width:960px){.flow{grid-template-columns:1fr}.flow-arrow{transform:rotate(90deg)}.node{transform:rotateX(calc((1 - var(--v))*30deg)) translateZ(calc((1 - var(--v))*-160px))}}
-main{overflow-x:clip}
 @media (max-width:520px){.split{grid-template-columns:1fr}}
 
 /* ---------- build log cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,28px)}
-.card{--v:1;perspective:1200px}
+.bcard{--v:1;perspective:1200px}
 .card-in{height:100%;border-radius:var(--r);background:linear-gradient(170deg,rgba(13,52,61,.7),rgba(6,30,36,.7));border:1px solid var(--line);
   overflow:hidden;transform-origin:50% 100%;--rx:0;--ry:0;
   transform:rotateX(calc((1 - var(--v))*26deg + var(--rx)*1deg)) rotateY(calc(var(--ry)*1deg)) translateY(calc((1 - var(--v))*80px)) scale(calc(.92 + var(--v)*.08));
   opacity:calc(.15 + var(--v)*.85);transition:border-color .3s;display:flex;flex-direction:column}
 .card-in:hover{border-color:var(--line2)}
 .card-body{padding:clamp(20px,2.4vw,32px);display:flex;flex-direction:column;gap:12px;flex:1}
-.card .tag{font-size:12px;color:var(--mint);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-.card h3{font-size:clamp(22px,2.2vw,30px)}
-.card p{color:var(--mute);font-size:15px}
-.card .how{list-style:none;display:grid;gap:8px;margin-top:4px;font-size:14px}
-.card .how li{padding-left:18px;position:relative}
-.card .how li::before{content:"→";position:absolute;left:0;color:var(--cyan)}
+.bcard .tag{font-size:12px;color:var(--mint);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.bcard h3{font-size:clamp(22px,2.2vw,30px)}
+.bcard p{color:var(--mute);font-size:15px}
+.bcard .how{list-style:none;display:grid;gap:8px;margin-top:4px;font-size:14px}
+.bcard .how li{padding-left:18px;position:relative}
+.bcard .how li::before{content:"→";position:absolute;left:0;color:var(--cyan)}
 .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:10px}
-.readmore{color:var(--cyan);font-weight:600;font-size:14px;margin-top:6px}
-.readmore:hover{text-decoration:underline}
 .pills span{font-size:12px;padding:5px 10px;border-radius:999px;background:rgba(118,251,238,.08);color:var(--mint)}
-.card.wide{grid-column:span 2}
-.card.wide .card-in{flex-direction:row}
-.card.wide .media{flex:1.1;aspect-ratio:auto;min-height:320px}
-.card.wide .card-body{flex:1}
-@media (max-width:860px){.cards{grid-template-columns:1fr}.card.wide{grid-column:auto}.card.wide .card-in{flex-direction:column}.card.wide .media{min-height:0;aspect-ratio:4/3}}
+.bcard.wide{grid-column:span 2}
+.bcard.wide .card-in{flex-direction:row}
+.bcard.wide .media{flex:1.1;aspect-ratio:auto;min-height:320px}
+.bcard.wide .card-body{flex:1}
+@media (max-width:860px){.cards{grid-template-columns:1fr}.bcard.wide{grid-column:auto}.bcard.wide .card-in{flex-direction:column}.bcard.wide .media{min-height:0;aspect-ratio:4/3}}
 
-/* image slots */
-.media{aspect-ratio:4/3;position:relative;background:
-  repeating-linear-gradient(45deg,rgba(140,230,240,.04) 0 12px,transparent 12px 24px),#072830;
-  border-bottom:1px solid var(--line);overflow:hidden}
-.media .ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:var(--dim);font-size:13px}
-.media .ph svg{width:34px;margin:0 auto 8px;color:var(--teal)}
-.media img{width:100%;height:100%;object-fit:cover}
-.media.has-img .ph{display:none}
-
-/* ---------- safety ---------- */
-.safe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.safe{padding:26px;border-radius:var(--r);border:1px solid var(--line);background:rgba(6,34,42,.45);perspective:900px}
-.safe .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(118,251,238,.1);color:var(--cyan);margin-bottom:16px}
-.safe .ic svg{width:22px}
-.safe h4{font-size:19px;margin-bottom:8px}
-.safe p{color:var(--mute);font-size:14.5px}
-@media (max-width:900px){.safe-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:600px){.safe-grid{grid-template-columns:1fr}}
 
 /* ---------- process (3D staircase) ---------- */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;perspective:1400px}
@@ -327,22 +207,14 @@ main{overflow-x:clip}
 @media (max-width:900px){.plans{grid-template-columns:1fr}}
 
 /* ---------- about ---------- */
-.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,70px);align-items:center}
+.home-about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,70px);align-items:center}
 .portrait{perspective:1200px}
 .portrait .media{aspect-ratio:4/5;border-radius:28px;border:1px solid var(--line2);transform:rotateY(calc(var(--ry,0)*1deg)) rotateX(calc(var(--rx,0)*1deg));transition:transform .2s}
-.about p{color:var(--mute);margin-bottom:16px;font-size:clamp(15px,1.2vw,17px)}
-.about p b{color:var(--ink)}
-.about.solo{grid-template-columns:1fr;max-width:820px}
-@media (max-width:860px){.about{grid-template-columns:1fr}.portrait{max-width:380px}}
+.home-about p{color:var(--mute);margin-bottom:16px;font-size:clamp(15px,1.2vw,17px)}
+.home-about p b{color:var(--ink)}
+.home-about.solo{grid-template-columns:1fr;max-width:820px}
+@media (max-width:860px){.home-about{grid-template-columns:1fr}.portrait{max-width:380px}}
 
-/* ---------- FAQ ---------- */
-.faq{max-width:860px}
-.faq details{border-bottom:1px solid var(--line);padding:22px 0}
-.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-family:var(--disp);font-size:clamp(17px,1.6vw,21px);font-weight:600}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";color:var(--cyan);font-size:24px;line-height:1;transition:transform .3s}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{color:var(--mute);margin-top:12px;max-width:720px}
 
 /* ---------- contact ---------- */
 .contact-box{border-radius:32px;border:1px solid var(--line2);padding:clamp(28px,5vw,64px);
@@ -359,8 +231,6 @@ main{overflow-x:clip}
 #calendlyBox iframe{width:100%;height:640px;border:0;border-radius:20px}
 @media (max-width:900px){.contact-box{grid-template-columns:1fr}#calendlyBox{min-height:300px}}
 
-footer{padding:40px 0 60px;color:var(--dim);font-size:13px}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
 /* reduced motion */
 @media (prefers-reduced-motion:reduce){
@@ -369,25 +239,58 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   .funnel .stage,.skills .stage{position:relative;height:auto;padding:80px 0}
   .card-in,.step,.node{transform:none!important;opacity:1!important}
 }
+
+/* ---------- hero word flip ---------- */
+.hero h1{perspective:900px}
+.hero h1 .grad-text{background:none}
+.hero h1 .w{display:inline-block;transform-origin:50% 90%;animation:wflip .9s cubic-bezier(.2,.75,.2,1) both;animation-delay:calc(var(--i)*55ms + .15s)}
+.hero h1 .grad-text .w{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes wflip{from{opacity:0;transform:rotateX(-95deg) translateY(.35em)}}
+.panel .who{margin:0 0 10px}
+
+/* ---------- 3D tools ribbon ---------- */
+.ribbon{position:relative;height:clamp(160px,20vw,240px);overflow:hidden;perspective:900px}
+.rb{position:absolute;left:-15%;right:-15%;padding:clamp(12px,1.4vw,18px) 0;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.rb1{top:16%;transform:rotateZ(-4deg) rotateX(16deg);background:var(--grad);color:#052a2c;z-index:2}
+.rb2{top:52%;transform:rotateZ(3deg) rotateX(-12deg);background:rgba(8,32,37,.95);border-block:1px solid var(--line2);color:var(--cyan)}
+.rb-track{display:flex;gap:30px;white-space:nowrap;font-family:var(--disp);font-weight:700;font-size:clamp(17px,2.2vw,28px);letter-spacing:-.01em;transform:translateX(calc(var(--x,0)*1px))}
+.rb-track span{display:inline-flex;align-items:center;gap:30px}
+.rb-track span::after{content:"";width:9px;height:9px;border-radius:2px;rotate:45deg;background:currentColor;opacity:.55}
+
+/* ---------- Funnel X-ray (interactive) ---------- */
+.xray-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(20px,4vw,60px);align-items:center}
+.xr-scene{perspective:1400px;height:clamp(320px,38vw,460px);display:grid;place-items:center}
+.xr-stack{position:relative;width:min(80%,330px);aspect-ratio:1.25;transform-style:preserve-3d;transform:rotateX(60deg) rotateZ(-38deg)}
+.xr-plate{position:absolute;inset:0;border-radius:20px;border:1px solid var(--line2);
+  background:linear-gradient(135deg,rgba(20,184,166,.22),rgba(118,251,238,.06));transform:translateZ(calc(var(--i)*74px));
+  display:grid;place-items:center;font-family:var(--disp);font-weight:600;font-size:clamp(13px,1.3vw,16px);color:var(--ink);
+  transition:transform .7s cubic-bezier(.2,.8,.2,1),background .4s,border-color .4s,box-shadow .4s,opacity .4s}
+.xr-plate.ok{background:linear-gradient(135deg,rgba(20,184,166,.6),rgba(118,251,238,.35));border-color:var(--cyan)}
+.xr-plate.leak{background:linear-gradient(135deg,rgba(255,118,84,.7),rgba(255,184,104,.4));border-color:#ffb27a;color:#fff;
+  box-shadow:0 0 80px rgba(255,140,90,.5);transform:translateZ(calc(var(--i)*74px + 46px)) translate(34px,-34px);animation:leak 1.6s ease-in-out infinite}
+@keyframes leak{50%{box-shadow:0 0 30px rgba(255,140,90,.25)}}
+.xr-plate.dim{opacity:.28}
+.xr-q{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 16px 14px 18px;border-radius:16px;border:1px solid var(--line);background:rgba(10,34,40,.5);margin-bottom:10px;transition:border-color .3s}
+.xr-q p{color:var(--ink);font-weight:500}
+.xr-q small{display:block;color:var(--dim);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.xr-q.no{border-color:rgba(255,160,110,.6)}
+.xr-q.yes{border-color:var(--line2)}
+.yn{display:flex;gap:6px;flex:none}
+.yn button{padding:8px 16px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--ink);cursor:pointer;font-weight:600;font-size:14px;transition:background .2s,color .2s}
+.yn button.sel[data-a=yes]{background:var(--grad);color:#052a2c;border-color:transparent}
+.yn button.sel[data-a=no]{background:#ff9a6b;color:#2a0d00;border-color:transparent}
+.xr-result{padding:24px;margin-top:16px}
+.xr-result h3{font-size:clamp(22px,2.4vw,30px);margin:6px 0 8px}
+.xr-result p{margin-bottom:18px}
+.xr-result.hot{border-color:rgba(255,160,110,.6)}
+@media (max-width:900px){.xray-grid{grid-template-columns:1fr}.xr-scene{height:300px}}
+@media (max-width:420px){.xr-q{flex-direction:column;align-items:flex-start}}
+
 </style>
-</head>
-<body>
+</Fragment>
 
-<div class="progress" id="progress"></div>
+<div class="home">
 
-<!-- ================= NAV ================= -->
-<nav class="nav" aria-label="Main">
-  <a href="#top" class="logo" aria-label="Muhammad Farooqui"><i>MF</i><span>Muhammad Farooqui</span></a>
-  <ul>
-    <li><a href="/work">Work</a></li>
-    <li><a href="/services">Services</a></li>
-    <li><a href="/notes">Notes</a></li>
-    <li><a href="/about">About</a></li>
-  </ul>
-  <a class="btn btn-main" href="/contact">Get in touch</a>
-</nav>
-
-<main id="top">
 
 <!-- ================= HERO ================= -->
 <header class="hero">
@@ -438,6 +341,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <div class="stat"><b><span data-count="5.50" data-dec="2">0</span>%</b><span>CTR on the top creative after pruning</span></div>
     <div class="stat"><b>0</b><span>Page builders — every section hand-coded</span></div>
   </div>
+</section>
+
+<!-- ================= RIBBON ================= -->
+<section class="ribbon" id="ribbon" aria-label="Tools and skills">
+  <div class="rb rb1"><div class="rb-track"><span>Shopify</span><span>Liquid</span><span>Meta Ads</span><span>Google Ads</span><span>CRO</span><span>COD logistics</span><span>Three.js</span><span>MediaPipe</span><span>Metafields</span><span>JSON-LD</span><span>A/B testing</span><span>Courier reconciliation</span><span>AJAX cart</span><span>Unit economics</span><span>Shopify</span><span>Liquid</span><span>Meta Ads</span><span>Google Ads</span><span>CRO</span><span>COD logistics</span><span>Three.js</span><span>MediaPipe</span><span>Metafields</span><span>JSON-LD</span><span>A/B testing</span><span>Courier reconciliation</span><span>AJAX cart</span><span>Unit economics</span><span>Shopify</span><span>Liquid</span><span>Meta Ads</span><span>Google Ads</span><span>CRO</span><span>COD logistics</span><span>Three.js</span><span>MediaPipe</span><span>Metafields</span><span>JSON-LD</span><span>A/B testing</span><span>Courier reconciliation</span><span>AJAX cart</span><span>Unit economics</span></div></div>
+  <div class="rb rb2"><div class="rb-track"><span>Unit economics</span><span>AJAX cart</span><span>Courier reconciliation</span><span>A/B testing</span><span>JSON-LD</span><span>Metafields</span><span>MediaPipe</span><span>Three.js</span><span>COD logistics</span><span>CRO</span><span>Google Ads</span><span>Meta Ads</span><span>Liquid</span><span>Shopify</span><span>Unit economics</span><span>AJAX cart</span><span>Courier reconciliation</span><span>A/B testing</span><span>JSON-LD</span><span>Metafields</span><span>MediaPipe</span><span>Three.js</span><span>COD logistics</span><span>CRO</span><span>Google Ads</span><span>Meta Ads</span><span>Liquid</span><span>Shopify</span><span>Unit economics</span><span>AJAX cart</span><span>Courier reconciliation</span><span>A/B testing</span><span>JSON-LD</span><span>Metafields</span><span>MediaPipe</span><span>Three.js</span><span>COD logistics</span><span>CRO</span><span>Google Ads</span><span>Meta Ads</span><span>Liquid</span><span>Shopify</span></div></div>
 </section>
 
 <!-- ================= FUNNEL EXPLODE ================= -->
@@ -565,6 +474,39 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   </div>
 </section>
 
+<!-- ================= FUNNEL X-RAY ================= -->
+<section class="sec" id="xray">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Funnel X-ray</span>
+      <h2>Where is your store leaking? <span class="grad-text">Four questions.</span></h2>
+      <p>Twenty seconds, no form. The first "no" is usually where I'd start looking.</p>
+    </div>
+    <div class="xray-grid">
+      <div class="xr-scene" aria-hidden="true">
+        <div class="xr-stack" id="xrStack">
+          <div class="xr-plate" style="--i:0">Ads</div>
+          <div class="xr-plate" style="--i:1">Product page</div>
+          <div class="xr-plate" style="--i:2">Cart &amp; checkout</div>
+          <div class="xr-plate" style="--i:3">COD delivery</div>
+        </div>
+      </div>
+      <div>
+        <div class="xr-q" data-q="0"><p><small>01 · Ads</small>Do people click your ads?</p><div class="yn"><button type="button" data-a="yes">Yes</button><button type="button" data-a="no">No</button></div></div>
+        <div class="xr-q" data-q="1"><p><small>02 · Product page</small>Do visitors add to cart?</p><div class="yn"><button type="button" data-a="yes">Yes</button><button type="button" data-a="no">No</button></div></div>
+        <div class="xr-q" data-q="2"><p><small>03 · Checkout</small>Do carts turn into orders?</p><div class="yn"><button type="button" data-a="yes">Yes</button><button type="button" data-a="no">No</button></div></div>
+        <div class="xr-q" data-q="3"><p><small>04 · Delivery</small>Do most COD orders get delivered?</p><div class="yn"><button type="button" data-a="yes">Yes</button><button type="button" data-a="no">No</button></div></div>
+        <div class="glass xr-result" id="xrResult" aria-live="polite">
+          <span class="eyebrow" id="xrTag">Your result</span>
+          <h3 id="xrTitle">Answer the four questions</h3>
+          <p id="xrText">Your leak will light up on the stack.</p>
+          <a class="btn btn-main" id="xrCta" href="#contact">Talk to me →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= BUILD LOG ================= -->
 <section class="sec" id="work">
   <div class="wrap">
@@ -577,7 +519,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <div class="cards">
 
       <!-- 01 TRY-ON -->
-      <article class="card wide" data-tilt3d>
+      <article class="bcard wide" data-tilt3d>
         <div class="card-in">
           <div class="media" data-img="tryon" data-alt="Virtual try-on running on a product page">
             <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>Image slot: <b>tryon</b><br>Try-on screenshot / GIF · 1200×900</div></div>
@@ -599,7 +541,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       </article>
 
       <!-- 02 ATC -->
-      <article class="card" data-tilt3d>
+      <article class="bcard" data-tilt3d>
         <div class="card-in">
           <div class="media" data-img="cart" data-alt="Sticky add-to-cart bar with variant popup">
             <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>Image slot: <b>cart</b><br>Sticky cart bar + popup · 1200×900</div></div>
@@ -619,7 +561,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       </article>
 
       <!-- 03 PDP -->
-      <article class="card" data-tilt3d>
+      <article class="bcard" data-tilt3d>
         <div class="card-in">
           <div class="media" data-img="pdp" data-alt="Custom product page template">
             <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>Image slot: <b>pdp</b><br>Full product page · 1200×900</div></div>
@@ -640,7 +582,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       </article>
 
       <!-- 04 CARD SYSTEM -->
-      <article class="card" data-tilt3d>
+      <article class="bcard" data-tilt3d>
         <div class="card-in">
           <div class="media" data-img="cards" data-alt="Shared product card system across the store">
             <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>Image slot: <b>cards</b><br>Product cards grid · 1200×900</div></div>
@@ -660,7 +602,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       </article>
 
       <!-- 05 CHATBOT -->
-      <article class="card" data-tilt3d>
+      <article class="bcard" data-tilt3d>
         <div class="card-in">
           <div class="media" data-img="chatbot" data-alt="AI customer support chatbot with admin panel">
             <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>Image slot: <b>chatbot</b><br>Chat + admin panel · 1200×900</div></div>
@@ -680,7 +622,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       </article>
 
       <!-- 06 ADS AUDIT -->
-      <article class="card wide" data-tilt3d>
+      <article class="bcard wide" data-tilt3d>
         <div class="card-in">
           <div class="media" data-img="ads" data-alt="Meta Ads account results with campaign names hidden">
             <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>Image slot: <b>ads</b><br>Ads Manager screenshot (names blurred) · 1200×900</div></div>
@@ -745,12 +687,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       <p>The question every store owner should ask before hiring anyone: "will this break what already works?" Here's how I make sure it doesn't.</p>
     </div>
     <div class="safe-grid">
-      <div class="safe" data-hover3d><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h4>Audit before I touch</h4><p>I study your ads and store first. No changes until I understand what's working.</p></div>
-      <div class="safe" data-hover3d><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div><h4>You sign off the plan</h4><p>You get a written plan. Nothing gets built until you've agreed to it.</p></div>
-      <div class="safe" data-hover3d><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></div><h4>Built on a copy</h4><p>All work happens on a duplicate theme. You review it through a preview link while your live store keeps selling.</p></div>
-      <div class="safe" data-hover3d><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 12h16M12 4v16"/></svg></div><h4>Scoped code</h4><p>Each section carries its own styles. A change on one page can't quietly break another.</p></div>
-      <div class="safe" data-hover3d><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h4>Every screen, properly</h4><p>Fluid sizing that adapts to any phone, and hover effects only where a real mouse exists.</p></div>
-      <div class="safe" data-hover3d><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg></div><h4>Documented, not locked in</h4><p>Files, metafields and conventions are written down. You're never dependent on me to understand your own store.</p></div>
+      <div class="safe"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h4>Audit before I touch</h4><p>I study your ads and store first. No changes until I understand what's working.</p></div>
+      <div class="safe"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div><h4>You sign off the plan</h4><p>You get a written plan. Nothing gets built until you've agreed to it.</p></div>
+      <div class="safe"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></div><h4>Built on a copy</h4><p>All work happens on a duplicate theme. You review it through a preview link while your live store keeps selling.</p></div>
+      <div class="safe"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 12h16M12 4v16"/></svg></div><h4>Scoped code</h4><p>Each section carries its own styles. A change on one page can't quietly break another.</p></div>
+      <div class="safe"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h4>Every screen, properly</h4><p>Fluid sizing that adapts to any phone, and hover effects only where a real mouse exists.</p></div>
+      <div class="safe"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg></div><h4>Documented, not locked in</h4><p>Files, metafields and conventions are written down. You're never dependent on me to understand your own store.</p></div>
     </div>
   </div>
 </section>
@@ -808,8 +750,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
 <!-- ================= ABOUT ================= -->
 <section class="sec" style="padding-top:0">
-  <div class="wrap about">
-    <div class="portrait" data-hover3d-target>
+  <div class="wrap home-about">
+    <div class="portrait"-target>
       <div class="media" data-img="portrait" data-alt="Muhammad Farooqui, e-commerce manager">
         <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Image slot: <b>portrait</b><br>Your photo · 1000×1250</div></div>
       </div>
@@ -834,7 +776,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     </div>
     <div class="safe-grid">
       {notes.map((n) => (
-        <a class="safe" data-hover3d href={`/notes/${n.id}`}>
+        <a class="safe" href={`/notes/${n.id}`}>
           <span class="who me" style="margin:0 0 14px">{n.data.pillar}</span>
           <h4>{n.data.title}</h4>
           <p>{n.data.lead}</p>
@@ -881,15 +823,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   </div>
 </section>
 
-</main>
 
-<footer>
-  <div class="wrap">
-    <span>© <span id="yr">2026</span> Muhammad Farooqui | E-Commerce · Karachi, Pakistan</span>
-    <span style="display:flex;gap:18px;flex-wrap:wrap"><a href="/work">Work</a><a href="/services">Services</a><a href="/notes">Notes</a><a href="/tools">Free tools</a><a href="/contact">Contact</a></span>
-    <span>Shopify · CRO · COD Logistics · Performance Marketing · Team: <a data-link="agency" href="#" style="color:var(--mint)">Farooqui Inc</a></span>
-  </div>
-</footer>
+</div>
 
 <script is:inline>
 /* =========================================================
@@ -938,7 +873,6 @@ const CONFIG = {
     box.innerHTML = '<iframe title="Book a call" loading="lazy" src="'+CONFIG.calendly+'?hide_gdpr_banner=1&background_color=06222a&text_color=e8fbff&primary_color=22d3ee"></iframe>';
     box.style.border = '0'; box.style.padding = '0';
   }
-  document.getElementById('yr').textContent = new Date().getFullYear();
 
   /* ---------- helpers ---------- */
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -946,7 +880,6 @@ const CONFIG = {
   const smooth = t=>t*t*(3-2*t);
   const secProgress = el=>{ const r = el.getBoundingClientRect(); const t = r.height - innerHeight; return t>0 ? clamp(-r.top/t,0,1) : 0; };
 
-  const progress = document.getElementById('progress');
   const heroScene = document.getElementById('heroScene');
   const funnel = document.getElementById('funnel');
   const stack = document.getElementById('stack');
@@ -959,6 +892,8 @@ const CONFIG = {
   const dots = [...document.querySelectorAll('#dots i')];
   const tiltCards = [...document.querySelectorAll('[data-tilt3d]')];
   const steps = [...document.querySelectorAll('[data-step]')];
+  const ribbon = document.getElementById('ribbon');
+  const rbTracks = [...document.querySelectorAll('.rb-track')];
   const nodes = [...document.querySelectorAll('[data-node]')];
 
   let lastSkill = -1, lastLayer = -1;
@@ -966,8 +901,6 @@ const CONFIG = {
 
   function update(){
     ticking = false;
-    const docH = document.documentElement.scrollHeight - innerHeight;
-    progress.style.transform = 'scaleX(' + (docH>0 ? scrollY/docH : 0) + ')';
 
     if(RM){ setActive(panels,0); setActive(tiles,0); setActive(dots,0); return; }
 
@@ -1004,6 +937,13 @@ const CONFIG = {
       const r = s.getBoundingClientRect();
       s.style.setProperty('--v', clamp((vh - r.top - i*30)/(vh*.45),0,1).toFixed(3));
     });
+    /* ribbon: both bands slide opposite ways with scroll, and back */
+    const rr = ribbon.getBoundingClientRect();
+    if(rr.bottom > -50 && rr.top < vh + 50){
+      const loc = vh - rr.top;
+      rbTracks[0].style.setProperty('--x', (-loc*0.55).toFixed(1));
+      rbTracks[1].style.setProperty('--x', (-900 + loc*0.55).toFixed(1));
+    }
   }
   let ticking = false;
   const req = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } };
@@ -1030,37 +970,75 @@ const CONFIG = {
       host.addEventListener('mouseleave', ()=>{ target.style.setProperty('--rx',0); target.style.setProperty('--ry',0); });
     };
     tiltCards.forEach(c=>tilt(c, c.querySelector('.card-in'), 8));
-    document.querySelectorAll('[data-hover3d]').forEach(s=>{
-      s.style.transition = 'transform .2s';
-      s.addEventListener('mousemove', e=>{
-        const r = s.getBoundingClientRect();
-        const x = (e.clientX-r.left)/r.width - .5, y = (e.clientY-r.top)/r.height - .5;
-        s.style.transform = 'perspective(800px) rotateY('+(x*12)+'deg) rotateX('+(-y*12)+'deg) translateZ(10px)';
-      });
-      s.addEventListener('mouseleave', ()=>{ s.style.transform = ''; });
-    });
     const pt = document.querySelector('[data-hover3d-target]');
     if(pt) tilt(pt, pt.querySelector('.media'), 10);
   }
 
-  /* ---------- counters ---------- */
-  const counters = document.querySelectorAll('[data-count]');
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(en=>{
-      if(!en.isIntersecting) return;
-      const el = en.target, end = parseFloat(el.dataset.count), dec = +(el.dataset.dec||0);
-      if(RM){ el.textContent = end.toFixed(dec); io.unobserve(el); return; }
-      const t0 = performance.now(), dur = 1400;
-      const step = now=>{
-        const k = clamp((now-t0)/dur,0,1), e = 1 - Math.pow(1-k,3);
-        el.textContent = (end*e).toFixed(dec);
-        if(k<1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step); io.unobserve(el);
+  /* ---------- hero: words flip in one by one ---------- */
+  const h1 = document.querySelector('.hero h1');
+  if(h1 && !RM){
+    let n = 0;
+    const split = node=>{
+      [...node.childNodes].forEach(ch=>{
+        if(ch.nodeType===3){
+          const frag = document.createDocumentFragment();
+          ch.textContent.split(/(\s+)/).forEach(part=>{
+            if(!part) return;
+            if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(' ')); return; }
+            const s = document.createElement('span'); s.className = 'w'; s.style.setProperty('--i', n++); s.textContent = part; frag.appendChild(s);
+          });
+          ch.replaceWith(frag);
+        } else if(ch.nodeType===1) split(ch);
+      });
+    };
+    split(h1);
+  }
+
+  /* ---------- Funnel X-ray ---------- */
+  const XR = [
+    {t:'The ads', x:"People aren't clicking, so the offer, creative or audience isn't stopping the scroll. I'd start with a full account audit — creatives, audiences and where the budget is actually going."},
+    {t:'The product page', x:"Traffic arrives but doesn't add to cart — the page isn't answering the buyer's doubts. I'd look at images, price clarity, delivery info and trust signals next to the buy button."},
+    {t:'Cart & checkout', x:"Carts aren't becoming orders. Something adds friction: surprise shipping costs, variant errors or a slow mobile checkout. I'd walk the full journey on a phone first."},
+    {t:'COD & delivery', x:"Orders come in but don't get delivered — refusals and fake orders eat the margin. I'd set up order confirmation before dispatch and courier reconciliation."}
+  ];
+  const ans = [null,null,null,null];
+  const xrPlates = [...document.querySelectorAll('.xr-plate')];
+  const xrQs = [...document.querySelectorAll('.xr-q')];
+  const xrBox = document.getElementById('xrResult');
+  const wa = msg => CONFIG.whatsapp ? 'https://wa.me/'+CONFIG.whatsapp.replace(/\D/g,'')+'?text='+encodeURIComponent(msg) : '#contact';
+  const xr = ()=>{
+    const leak = ans.indexOf('no'), done = ans.filter(Boolean).length;
+    xrPlates.forEach((p,i)=>{
+      p.classList.toggle('ok', ans[i]==='yes' && (leak<0 || i<leak));
+      p.classList.toggle('leak', i===leak);
+      p.classList.toggle('dim', leak>=0 && i>leak);
     });
-  },{threshold:.6});
-  counters.forEach(c=>io.observe(c));
+    xrQs.forEach((q,i)=>{ q.classList.toggle('no', ans[i]==='no'); q.classList.toggle('yes', ans[i]==='yes'); });
+    const tag = document.getElementById('xrTag'), ti = document.getElementById('xrTitle'), tx = document.getElementById('xrText'), cta = document.getElementById('xrCta');
+    xrBox.classList.toggle('hot', leak>=0);
+    cta.removeAttribute('target');
+    if(leak>=0){
+      tag.textContent = 'Likely leak'; ti.textContent = XR[leak].t; tx.textContent = XR[leak].x;
+      cta.textContent = 'Send me this on WhatsApp →';
+      cta.href = wa('Hi Muhammad, I ran the Funnel X-ray on your site. My likely leak: ' + XR[leak].t + '. My store: ');
+      if(CONFIG.whatsapp){ cta.target = '_blank'; cta.rel = 'noopener'; }
+    } else if(done===4){
+      tag.textContent = 'All four hold'; ti.textContent = 'No obvious leak — time to scale';
+      tx.textContent = "Your funnel holds at every layer. The next step is scaling ads without breaking what already works.";
+      cta.textContent = 'Talk about scaling →';
+      cta.href = wa('Hi Muhammad, I ran the Funnel X-ray — all four layers look fine and I want to scale. My store: ');
+      if(CONFIG.whatsapp){ cta.target = '_blank'; cta.rel = 'noopener'; }
+    } else {
+      tag.textContent = 'Your result'; ti.textContent = done ? 'Keep going — ' + done + ' of 4' : 'Answer the four questions';
+      tx.textContent = 'Your leak will light up on the stack.'; cta.textContent = 'Talk to me →'; cta.href = '#contact';
+    }
+  };
+  xrQs.forEach((q,i)=> q.querySelectorAll('button').forEach(b=> b.addEventListener('click', ()=>{
+    ans[i] = ans[i]===b.dataset.a ? null : b.dataset.a;
+    q.querySelectorAll('button').forEach(x=> x.classList.toggle('sel', ans[i]===x.dataset.a));
+    xr();
+  })));
 })();
 </script>
-</body>
-</html>
+
+</Base>

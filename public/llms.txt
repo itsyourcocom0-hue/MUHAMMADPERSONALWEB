@@ -1,0 +1,16 @@
+# Muhammad Farooqui
+
+> Muhammad Farooqui is an e-commerce manager based in Karachi, Pakistan. He diagnoses the whole e-commerce funnel — ads, product pages, cart and checkout, COD delivery — and personally owns the strategy, design and build. He has managed PKR 14 crore+ in ad spend across platforms. A small team at Farooqui Inc (https://farooqui-inc.com) supports routine execution under his direction.
+
+Skills: Shopify development (Liquid, metafields, custom sections), conversion rate optimisation, Meta Ads, Google Ads, COD logistics and courier reconciliation, browser-based virtual try-on (Three.js, MediaPipe).
+
+## Pages
+- [Home](https://muhammadfarooqui.com/): overview, skills, build log, Funnel X-ray
+- [Work](https://muhammadfarooqui.com/work): case studies (store names intentionally not shown)
+- [Premium eyewear store rebuild](https://muhammadfarooqui.com/work/eyewear-store)
+- [Virtual try-on build](https://muhammadfarooqui.com/work/virtual-try-on)
+- [Gadget store & AI support chatbot](https://muhammadfarooqui.com/work/gadget-store)
+- [Services](https://muhammadfarooqui.com/services)
+- [Notes](https://muhammadfarooqui.com/notes)
+- [About](https://muhammadfarooqui.com/about)
+- [Contact](https://muhammadfarooqui.com/contact): muhammad@farooqui-inc.com

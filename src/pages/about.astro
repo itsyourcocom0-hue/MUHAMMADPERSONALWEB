@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Orbit from '../components/Orbit.astro';
 import CTA from '../components/CTA.astro';
 import { site } from '../config/site';
 ---
@@ -9,6 +10,7 @@ import { site } from '../config/site';
   ogType="profile"
 >
   <header class="pagehead">
+    <Orbit hot={2} />
     <p class="eyebrow">About / Muhammad Farooqui</p>
     <h1>Close to the work.<br /><em>Accountable to the whole.</em></h1>
     <p class="lead">I find where an e-commerce business is losing sales — and fix it myself. My base is Karachi. My focus is the whole funnel.</p>

@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Orbit from '../components/Orbit.astro';
 import Card from '../components/Card.astro';
 import CTA from '../components/CTA.astro';
 
@@ -30,11 +31,13 @@ const faq = [
   description="Funnel diagnosis, custom Shopify builds and CRO, COD/courier operations setup and an ongoing growth partnership — scoped around the layer that is actually broken."
 >
   <header class="pagehead">
+    <Orbit hot={3} />
     <p class="eyebrow">Services / Ways to work together</p>
     <h1>Fix the constraint.<br /><em>Connect the business.</em></h1>
     <p class="lead">Start with the part that needs attention. Keep the surrounding systems in view.</p>
   </header>
 
+  <div class="services">
   {services.map((s, i) => (
     <section class="service" id={s.id}>
       <span class="number">{String(i + 1).padStart(2, '0')}</span>
@@ -49,6 +52,7 @@ const faq = [
       </div>
     </section>
   ))}
+  </div>
 
   <section class="section">
     <h2>A simple working process.</h2>

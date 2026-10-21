@@ -9,8 +9,10 @@ interface Props {
   title: string;          // full <title>, written per page
   description: string;    // meta description, written per page
   ogType?: 'website' | 'article' | 'profile';
+  full?: boolean;         // true = page manages its own .wrap containers (homepage)
+  schema?: object[];      // extra JSON-LD blocks for this page
 }
-const { title, description, ogType = 'website' } = Astro.props;
+const { title, description, ogType = 'website', full = false, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og.png', Astro.site);
 
@@ -21,9 +23,10 @@ const person = {
   jobTitle: site.jobTitle,
   url: site.url,
   email: `mailto:${site.email}`,
+  description: 'E-commerce manager who diagnoses the full funnel — ads, store, cart and COD operations — and personally owns the strategy, design and build.',
   address: { '@type': 'PostalAddress', addressLocality: site.city, addressCountry: 'PK' },
   worksFor: { '@type': 'Organization', name: site.company.name, url: site.company.url },
-  knowsAbout: ['E-commerce', 'Shopify', 'Meta Ads', 'Google Ads', 'Conversion rate optimization', 'COD logistics', 'Performance marketing', 'Unit economics'],
+  knowsAbout: ['E-commerce management', 'Shopify development', 'Liquid', 'Conversion rate optimisation', 'Meta Ads', 'Google Ads', 'COD logistics', 'Virtual try-on', 'Performance marketing', 'Unit economics'],
   ...(sameAs.length ? { sameAs } : {}),
 };
 ---
@@ -39,6 +42,9 @@ const person = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="author" content={site.name} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
@@ -52,13 +58,78 @@ const person = {
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
+    {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+    <slot name="head" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <div class="wrap">
-      <Header />
-      <main id="main"><slot /></main>
-      <Footer />
-    </div>
+    <div class="scrollbar-top" id="scrollbar"></div>
+    <Header />
+    <main id="main">
+      {full ? <slot /> : <div class="wrap"><slot /></div>}
+    </main>
+    <div class="wrap"><Footer /></div>
+
+    <script is:inline>
+    /* Shared 3D + scroll behaviour for every page. Everything reverses on scroll up. */
+    (function () {
+      var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var root = document.documentElement;
+      var bar = document.getElementById('scrollbar');
+      var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+
+      var REVEAL = '.card, .service, .metric, .safe, .prose img, .tool, .contactgrid form, .cta, .checklist label, .faq details, .contactlinks a, [data-reveal]';
+      var items = RM ? [] : Array.prototype.slice.call(document.querySelectorAll(REVEAL));
+      items.forEach(function (el) { el.setAttribute('data-reveal', ''); });
+
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var h = root.scrollHeight - innerHeight;
+        if (bar) bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+        root.style.setProperty('--sy', clamp(scrollY / innerHeight, 0, 1.4).toFixed(3));
+        var vh = innerHeight;
+        for (var i = 0; i < items.length; i++) {
+          var r = items[i].getBoundingClientRect();
+          if (r.top > vh * 1.3 || r.bottom < -vh * .3) continue;
+          items[i].style.setProperty('--v', clamp((vh - r.top) / (vh * .3), 0, 1).toFixed(3));
+        }
+      }
+      function req() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+      addEventListener('scroll', req, { passive: true });
+      addEventListener('resize', req);
+      update();
+
+      /* spotlight + tilt on glass cards (real mouse only) */
+      if (!RM && matchMedia('(hover: hover) and (min-width: 1025px)').matches) {
+        document.querySelectorAll('.card, .safe, .service, .metric, .glass.spot').forEach(function (el) {
+          el.addEventListener('mousemove', function (e) {
+            var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+            el.style.setProperty('--mx', (x * 100) + '%'); el.style.setProperty('--my', (y * 100) + '%');
+            el.style.setProperty('--ry', ((x - .5) * 10).toFixed(2)); el.style.setProperty('--rx', ((y - .5) * -10).toFixed(2));
+            el.classList.add('tilting');
+          });
+          el.addEventListener('mouseleave', function () { el.classList.remove('tilting'); });
+        });
+      }
+
+      /* count-up numbers: data-count="14" data-dec="2" */
+      var counters = document.querySelectorAll('[data-count]');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            var el = en.target, end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0);
+            io.unobserve(el);
+            if (RM) { return; }
+            var fmt = function (n) { return el.dataset.sep ? n.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) : n.toFixed(dec); };
+            var t0 = performance.now();
+            (function step(now) { var k = clamp((now - t0) / 1400, 0, 1); el.textContent = fmt(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); })(t0);
+          });
+        }, { threshold: .6 });
+        counters.forEach(function (c) { io.observe(c); });
+      }
+    })();
+    </script>
   </body>
 </html>
