@@ -17,21 +17,19 @@ export const site = {
 
   // TODO (Muhammad): paste real links when ready — empty ones stay hidden.
   calendlyUrl: '',   // e.g. https://calendly.com/<your-link>
-  whatsappUrl: '',   // e.g. https://wa.me/92XXXXXXXXXX
+  whatsappUrl: 'https://wa.me/923111101577',
   socials: {
-    instagram: '',   // https://instagram.com/<handle>
-    linkedin: '',    // https://linkedin.com/in/<handle>
+    instagram: 'https://www.instagram.com/its_cocom0/',
+    linkedin: 'https://www.linkedin.com/in/muhammad-bin-yousuf-835208287/',
     youtube: '',
   },
 
-  // Brand is written "AEEN"; the domain is only used when the website itself is meant.
-  aeen: { name: 'AEEN', url: 'https://aeenwears.com', domain: 'aeenwears.com' },
-  mog: { name: 'MOG', fullName: 'Mart of Gadget' },
+  // Store/brand names are intentionally NOT shown anywhere on this site.
 } as const;
 
 export const nav = [
-  { href: '/work', label: 'Selected work' },
-  { href: '/services', label: 'What I do' },
+  { href: '/work', label: 'Work' },
+  { href: '/services', label: 'Services' },
   { href: '/notes', label: 'Notes' },
   { href: '/about', label: 'About' },
 ];

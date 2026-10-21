@@ -1,14 +1,14 @@
 ---
 order: 2
-eyebrow: "Case study 02 / AEEN implementation"
+eyebrow: "Case study 02 / Eyewear virtual try-on"
 title: "Make the frame<br><em>feel like a frame.</em>"
-lead: "A browser-based virtual try-on for the Octa Metal eyewear product. The hard part lives between the model, the camera and the material."
+lead: "A browser-based virtual try-on for a metal eyewear frame, built into a Shopify product page. The hard part lives between the model, the camera and the material."
 cardTitle: "From heavy model to browser try-on."
 cardText: "A closer look at asset optimization, face tracking and the details that make eyewear feel believable."
 seoTitle: "Virtual Try-On for Eyewear — Three.js + MediaPipe Case Study | Muhammad Farooqui"
-seoDescription: "How an 86.9 MB 3D frame became a 2.36 MB browser try-on for AEEN: model optimization, separate lens materials, face tracking and Shopify integration."
+seoDescription: "How an 86.9 MB 3D frame became a 2.36 MB browser try-on for a premium eyewear store: model optimization, separate lens materials, face tracking and Shopify integration."
 sidebar:
-  - { label: "Project", value: "AEEN / Octa Metal" }
+  - { label: "Project", value: "Premium eyewear store" }
   - { label: "Stack", value: "MediaPipe · Three.js · Shopify" }
   - { label: "Type", value: "Implementation deep dive" }
 metrics:

@@ -1,21 +1,19 @@
 ---
 import Base from '../../layouts/Base.astro';
-import AeenFeature from '../../components/AeenFeature.astro';
 import Card from '../../components/Card.astro';
 import CTA from '../../components/CTA.astro';
 import { getCollection } from 'astro:content';
-const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order).filter((w) => !w.data.featured);
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
 ---
 <Base
   title="Selected Work — E-Commerce Case Studies | Muhammad Farooqui"
-  description="Owned brands and hands-on builds by Muhammad Farooqui: the AEEN eyewear brand, its virtual try-on, and the MOG gadget store — context, work and honest limits."
+  description="Hands-on e-commerce builds by Muhammad Farooqui: a premium eyewear store rebuilt in custom Shopify code, a browser virtual try-on and a gadget store with an AI support chatbot."
 >
   <header class="pagehead">
     <p class="eyebrow">Work / Selected projects</p>
     <h1>The work behind<br /><em>the positioning.</em></h1>
-    <p class="lead">Owned brands and hands-on implementation. Each project explains the context, the work and the limits of what can be claimed.</p>
+    <p class="lead">Hands-on builds, store names left out. Each project explains the context, the work and the limits of what can be claimed.</p>
   </header>
-  <AeenFeature />
   <div class="grid two" style="margin:24px 0 75px">
     {work.map((w) => <Card href={`/work/${w.id}`} eyebrow={w.data.eyebrow} title={w.data.cardTitle} text={w.data.cardText} />)}
   </div>

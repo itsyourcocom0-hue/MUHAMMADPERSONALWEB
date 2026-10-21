@@ -4,29 +4,30 @@ import Card from '../components/Card.astro';
 import CTA from '../components/CTA.astro';
 
 const services = [
-  { id: 'store', title: 'Shopify build & rebuild', intro: 'For a store that needs a clearer, more useful buying experience.',
-    items: ['Product and collection structure', 'Theme customisation and product-page implementation', 'Mobile journey and launch checks'],
+  { id: 'audit', title: 'Funnel diagnosis', intro: 'For a store that isn’t sure where sales are being lost.',
+    items: ['Ad account review — campaigns, audiences and creatives', 'Product-page, cart and mobile checkout review', 'Prioritised findings with screenshots and reasoning'],
+    outcome: 'A clear answer to which layer is broken, and a fix list organised by impact and effort.' },
+  { id: 'store', title: 'Expert fix — Shopify build & CRO', intro: 'For a store whose website is the weak link.',
+    items: ['Custom sections, product pages and cart logic in Liquid', 'Built on a duplicate theme, reviewed through preview links', 'Mobile journey, launch checks and documentation'],
     outcome: 'A working storefront and a clear handover.' },
-  { id: 'audit', title: 'CRO & store audit', intro: 'For a store with traffic, unanswered questions and friction in the buying journey.',
-    items: ['Product-page and mobile checkout review', 'Prioritised findings with screenshots and reasoning', 'A practical implementation and measurement plan'],
-    outcome: 'An actionable audit, organised by impact and effort.' },
   { id: 'operations', title: 'Operations setup', intro: 'For a business that needs visibility after checkout.',
     items: ['Order-status and fulfilment workflow', 'Courier/COD reconciliation structure', 'Return reasons and unit-economics reporting'],
     outcome: 'A repeatable operating process with ownership made clear.' },
-  { id: 'retainer', title: 'Operator retainer', intro: 'For a brand that needs connected execution across the business.',
-    items: ['Store, creative and acquisition coordination', 'Recurring operations and numbers review', 'Prioritised execution with documented follow-through'],
+  { id: 'retainer', title: 'Growth partner', intro: 'For a brand ready to grow, with one expert accountable for the whole funnel.',
+    items: ['Meta and Google Ads, store and creative working together', 'Continuous CRO testing on fixed test windows', 'Recurring operations and numbers review'],
     outcome: 'A defined scope, review rhythm and accountable point of contact.' },
 ];
 const faq = [
   ['Can we start with a small project?', 'Yes. A focused audit or a defined storefront change can be the starting point. The right scope depends on the problem.'],
   ['Do you guarantee revenue or ROAS?', 'No. Commercial results depend on the offer, market, traffic quality, costs and execution. The work should have clear deliverables and an agreed way to evaluate results.'],
   ['What should I send in an inquiry?', 'Your store URL, the problem you want to solve, your current platform and any timing constraints. Never send passwords or customer data in the first message.'],
-  ['How are pricing and availability handled?', 'Both are discussed after the scope is understood. This site does not show fixed packages or promise immediate availability.'],
+  ['How are pricing and availability handled?', 'Both are shared once the scope is understood, so you know what you are getting before work begins.'],
+  ['Who actually does the work?', 'I do. Diagnosis, strategy, design and the hands-on build are mine. A small team at Farooqui Inc supports routine execution under my direction, and I stay accountable for the result.'],
 ];
 ---
 <Base
   title="E-Commerce Services — Shopify, CRO, COD Operations | Muhammad Farooqui"
-  description="Shopify store builds, CRO and store audits, COD/courier operations setup and a full operator retainer for D2C brands — scoped around the actual constraint."
+  description="Funnel diagnosis, custom Shopify builds and CRO, COD/courier operations setup and an ongoing growth partnership — scoped around the layer that is actually broken."
 >
   <header class="pagehead">
     <p class="eyebrow">Services / Ways to work together</p>
